@@ -1,4 +1,4 @@
-# Contact Management Application
+# Remix, React Router v7 Contact Management Application
 
 A modern contact management application built with Remix, React Router v7, and TypeScript based on the tutorial in the Remix Documentation. Features contact creation, editing, deletion, and avatar management with SQLite storage.
 
