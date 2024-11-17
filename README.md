@@ -2,7 +2,7 @@
 
 A modern contact management application built with Remix, React Router v7, and TypeScript based on the tutorial in the Remix Documentation. Features contact creation, editing, deletion, and avatar management with SQLite storage.
 
-<img src="https://github.com/aaronksaunders/contact-management-app/blob/main/public/screenshot.png" alt="Screenshot of the application" width="600">
+<img src="https://raw.githubusercontent.com/aaronksaunders/remix-react-router7-tutorial-app/refs/heads/main/app/screenshot.png" alt="Screenshot of the application" width="600">
 
 ## 🚀 Features
 
