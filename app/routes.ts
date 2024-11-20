@@ -6,7 +6,7 @@
  */
 
 import type { RouteConfig } from "@react-router/dev/routes";
-import { index, route } from "@react-router/dev/routes";
+import { route } from "@react-router/dev/routes";
 
 /**
  * Application routes configuration
@@ -17,7 +17,7 @@ import { index, route } from "@react-router/dev/routes";
  * - Contact Details (/contacts/:id) - Individual contact view
  * - Edit Contact (/contacts/:id/edit) - Contact editing form
  * - Delete Contact (/contacts/:id/delete) - Contact deletion handler
- * 
+ *
  * @example
  * // URL structure examples:
  * // / -> Home page
@@ -27,15 +27,13 @@ import { index, route } from "@react-router/dev/routes";
  * // /contacts/123/delete -> Delete handler for contact ID 123
  */
 export const routes: RouteConfig = [
-    // Home page route
-    index("routes/index.tsx"),
-
-    // Static pages
-    route("/about", "routes/about.tsx"),
-
-    // Contact-related routes
+  // Home page route
+  route("/", "./routes/index.tsx", [
     route("/contacts/:id", "routes/contact-details.tsx"),
     route("/contacts/:id/edit", "routes/edit-contact.tsx"),
     route("/contacts/:id/delete", "routes/delete-contact.tsx"),
-];
+  ]),
 
+  // Static pages
+  route("/about", "routes/about.tsx"),
+];

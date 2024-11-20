@@ -10,17 +10,17 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-router/node": "nightly",
-    "@react-router/serve": "nightly",
+    "@react-router/node": "pre",
+    "@react-router/serve": "pre",
     "better-sqlite3": "^11.5.0",
     "isbot": "^4.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "nightly",
-    "react-router-dom": "nightly"
+    "react-router": "pre",
+    "react-router-dom": "pre"
   },
   "devDependencies": {
-    "@react-router/dev": "nightly",
+    "@react-router/dev": "pre",
     "@types/better-sqlite3": "^7.6.11",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",

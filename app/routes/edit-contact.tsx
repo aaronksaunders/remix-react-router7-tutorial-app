@@ -8,9 +8,7 @@ import { Route } from ".react-router/types/app/routes/+types.contact-details";
 import {
   Form,
   isRouteErrorResponse,
-  LoaderFunctionArgs,
   redirect,
-  useLoaderData,
   useRouteError,
   useNavigate,
 } from "react-router";
@@ -25,13 +23,13 @@ import { useState, useRef } from "react";
  * @returns {Promise<{ contact: Contact }>} Contact data
  * @throws {Response} 404 error if contact not found
  */
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const contact = await getContact(params.id);
   if (!contact) {
     throw new Response("Contact not found", { status: 404 });
   }
   return { contact };
-};
+}
 
 /**
  * Action function to handle form submission and contact updates
@@ -56,11 +54,14 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
  * @param {Object} props.loaderData - Data from the loader function
  * @returns {JSX.Element} Edit contact form
  */
-export default function EditContact() {
+export default function EditContact({ loaderData }: Route.ComponentProps) {
   const navigator = useNavigate();
-  const { contact } = useLoaderData<typeof loader>();
-  const [avatarPreview, setAvatarPreview] = useState(contact?.avatar || "");
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const { contact } = loaderData && loaderData;
+
+  const [avatarPreview, setAvatarPreview] = useState(contact?.avatar || "");
 
   /**
    * Handles file selection for avatar upload
@@ -185,8 +186,10 @@ export default function EditContact() {
  * @component
  * @returns {JSX.Element} Error display component
  */
+
 export function ErrorBoundary() {
   const error = useRouteError();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   console.error((error as any)?.data);
 
   return (
@@ -194,9 +197,11 @@ export function ErrorBoundary() {
       <h1 className="text-xl font-bold text-red-800">Error!</h1>
       <p className="text-red-700">
         {isRouteErrorResponse(error)
-          ? `${error.statusText || (error as any)?.data}`
+          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            `${error.statusText || (error as any)?.data}`
           : error instanceof Error
-          ? error.message || (error as any)?.data
+          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            error.message || (error as any)?.data
           : "Unknown Error"}
       </p>
     </div>

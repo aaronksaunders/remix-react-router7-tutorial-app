@@ -4,13 +4,10 @@
  * and actions like favoriting, editing, and deleting contacts.
  */
 
-import { data, Form, redirect, useLoaderData } from "react-router";
+import { data, Form, redirect } from "react-router";
 import type { Contact } from "../types";
 import { FunctionComponent } from "react";
-import {
-  Route,
-  RouteModule,
-} from ".react-router/types/app/routes/+types.contact-details";
+import { Route } from ".react-router/types/app/routes/+types.contact-details";
 import { getContact, updateContact } from "~/server";
 
 /**
@@ -47,9 +44,8 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
  * Displays all information about a single contact
  * @returns {JSX.Element} Contact details page
  */
-export default function Contact() {
-  const { contact } = useLoaderData<typeof loader>();
-
+export default function Contact({ loaderData }: Route.ComponentProps) {
+  const { contact } = loaderData;
   if (!contact) {
     return (
       <div className="p-4 bg-red-50 border border-red-200 rounded-md">
